@@ -1,12 +1,15 @@
-// import { createRoot } from 'react-dom/client';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 
-// // Clear the existing HTML content
-// document.body.innerHTML = '<div id="app"></div>';
+import {App} from './App'
 
-// // Render your React component instead
-// const root = createRoot(document.getElementById('app') as HTMLElement);
-// root.render(<h1>Hello, world</h1>);
+// Clear the existing HTML content
+document.body.innerHTML = '<div id="app"></div>';
 
-import {fn} from './utils'
+// Render your React component instead
+const root = createRoot(document.getElementById('app') as HTMLElement);
+root.render(<App />);
 
-console.log(fn(20))
+// import {fn} from './utils'
+
+// console.log(fn(20))

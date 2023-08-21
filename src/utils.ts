@@ -1,3 +1,11 @@
-export const fn =(length: number) => {
-    return [...new Array(length)].map((_, i) => `Index ${i}`).filter(el => el !== 'Index 2').sort()
+const obj = {
+    name: 'vasya',
+    age: 39,
 }
+
+export const func = (length: number) => {
+    return `${obj.name} ${obj.age}`
+}
+
+
+
