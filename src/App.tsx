@@ -1,36 +1,27 @@
 import React, { FC, useState, useEffect } from "react";
 
 import { Menu } from "@src/components/Menu";
+import { Button } from "@src/components/Button";
 
 import { func } from "./utils";
 
 import styles from "./app.module.scss";
 
 export const App: FC = () => {
-  const [cnt, setCnt] = useState<number>(0);
-
-  console.log(styles);
-
-  useEffect(() => {
-    console.log(func(cnt));
-  }, [cnt]);
+  const [open, setOpen] = useState<boolean>(false);
 
   return (
     <div className={styles.container}>
-      <Menu />
+      <Menu open={open} setOpen={setOpen} />
 
       <div className={styles.content}>
-        <header>{`$Header ${cnt}`}</header>
+        <header>HEADER</header>
 
         <main>
-          <button
-            disabled={false}
-            type="button"
-            className={styles.button}
-            onClick={() => setCnt((prev) => prev + 1)}
-          >
-            Тыц
-          </button>
+          {/* <Button size="s" onClick={() => setOpen((prev) => !prev)}>
+            <span>sdhgvsdkjgv</span>
+            <span>svhsdjkvbsdipoibiasvbusi</span>
+          </Button> */}
         </main>
       </div>
     </div>

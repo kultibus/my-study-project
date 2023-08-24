@@ -1,22 +1,29 @@
 $theme: (
   "black": (
-    "semi": "#121212",
+    "semi": "rgba(0, 0, 0, 0.8)",
     "full": "#000000",
   ),
   "white": (
-    "semi": "#e5e5e5",
+    "semi": "rgba(255, 255, 255, 0.8)",
     "full": "#ffffff",
   ),
   "primary": (
     "main": "#CDC392",
     "light": "#E8E5DA",
   ),
-  "info": (
+  "secondary": (
     "main": "#304C89",
     "light": "#648DE5",
   ),
   "text": (
     "main": "#121212",
     "light": "#363636",
+  ),
+  "grey": (
+    "100": "#f5f5f5",
+    "200": "#e5e5e5",
+    "300": "#7a7a7a",
+    "400": "#363636",
+    "500": "#121212",
   ),
 );
