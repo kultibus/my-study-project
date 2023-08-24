@@ -27,7 +27,9 @@ module.exports = {
       template: './src/index.html',
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: path.resolve(__dirname, './src/assets'), to: '' }],
+      patterns: [
+        { from: path.resolve(__dirname, './src/assets'), to: '' }
+      ],
     }),
     new Dotenv(),
   ],

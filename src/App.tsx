@@ -1,5 +1,7 @@
 import React, { FC, useState, useEffect } from "react";
 
+import { Menu } from "@src/components/Menu";
+
 import { func } from "./utils";
 
 import styles from "./app.module.scss";
@@ -7,13 +9,15 @@ import styles from "./app.module.scss";
 export const App: FC = () => {
   const [cnt, setCnt] = useState<number>(0);
 
+  console.log(styles);
+
   useEffect(() => {
     console.log(func(cnt));
   }, [cnt]);
 
   return (
     <div className={styles.container}>
-      <aside></aside>
+      <Menu />
 
       <div className={styles.content}>
         <header>{`$Header ${cnt}`}</header>
