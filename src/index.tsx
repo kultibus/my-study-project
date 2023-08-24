@@ -1,15 +1,9 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
+import React from "react";
+import { createRoot } from "react-dom/client";
 
-import {App} from './App'
+import { App } from "./App";
 
-// Clear the existing HTML content
-document.body.innerHTML = '<div id="app"></div>';
+import "./index.scss";
 
-// Render your React component instead
-const root = createRoot(document.getElementById('app') as HTMLElement);
+const root = createRoot(document.getElementById("app") as HTMLElement);
 root.render(<App />);
-
-// import {fn} from './utils'
-
-// console.log(fn(20))

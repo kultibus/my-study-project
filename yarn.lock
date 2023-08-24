@@ -2822,7 +2822,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"css-loader@npm:^6.8.1":
+"css-loader@npm:6.8.1":
   version: 6.8.1
   resolution: "css-loader@npm:6.8.1"
   dependencies:
@@ -5437,7 +5437,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass-loader@npm:^13.3.2":
+"sass-loader@npm:13.3.2":
   version: 13.3.2
   resolution: "sass-loader@npm:13.3.2"
   dependencies:
@@ -5461,7 +5461,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.66.1":
+"sass@npm:1.66.1":
   version: 1.66.1
   resolution: "sass@npm:1.66.1"
   dependencies:
@@ -5878,7 +5878,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"style-loader@npm:^3.3.3":
+"style-loader@npm:3.3.3":
   version: 3.3.3
   resolution: "style-loader@npm:3.3.3"
   peerDependencies:
@@ -5984,16 +5984,16 @@ __metadata:
     babel-plugin-import: 1.13.6
     clean-webpack-plugin: 4.0.0
     copy-webpack-plugin: 11.0.0
-    css-loader: ^6.8.1
+    css-loader: 6.8.1
     dotenv-webpack: 8.0.1
     html-webpack-plugin: 5.5.3
     mini-css-extract-plugin: 2.7.2
     prettier: 2.8.1
     react: 18.2.0
     react-dom: 18.2.0
-    sass: ^1.66.1
-    sass-loader: ^13.3.2
-    style-loader: ^3.3.3
+    sass: 1.66.1
+    sass-loader: 13.3.2
+    style-loader: 3.3.3
     ts-node: 10.9.1
     typescript: 5.1.6
     webpack: 5.88.2
