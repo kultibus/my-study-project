@@ -4,9 +4,38 @@
 //   type: 'гласная' | 'согласная' | 'знак препинания' | 'пробел'
 // }
 
-const INPUT = "хуй !";
+const INPUT = "Списо^#к букв кирил(*лицы";
 
-const generate = (string) => {};
+// const generate = (string) => {};
+
+const vovels = "аеёиоуыэюя";
+const notVovels = "бвгджзйклмнпрстфхцчшщъь";
+
+const fn = (symbol) => {
+  const space = symbol.match(/\s/);
+
+  if (symbol == space) return "пробел";
+  if (vovels.includes(symbol)) return "гласная";
+  if (notVovels.includes(symbol)) return "согласная";
+  return "знак препинания";
+};
+
+const generate = (string) => {
+  string = string.toLowerCase();
+
+  const arrayFromString = [];
+
+  for (let index = 0; index < string.length; index++) {
+    const objectFromString = {
+      value: string.at(index),
+      type: fn(string.at(index)),
+    };
+
+    arrayFromString.push(objectFromString);
+  }
+
+  return arrayFromString;
+};
 
 // Пример ответа
 // [
@@ -33,4 +62,4 @@ const generate = (string) => {};
 // ];
 
 // не трогать
-export const runner = () => console.log(generate(INPUT));
+export const runner = () => console.table(generate(INPUT));
