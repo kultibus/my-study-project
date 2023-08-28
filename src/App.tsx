@@ -3,12 +3,16 @@ import React, { FC, useState, useEffect } from "react";
 import { Menu } from "@src/components/Menu";
 import { Button } from "@src/components/Button";
 
-import { func } from "./utils";
+import { runner } from "./utils";
 
 import styles from "./app.module.scss";
 
 export const App: FC = () => {
   const [open, setOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    runner();
+  }, []);
 
   return (
     <div className={styles.container}>
