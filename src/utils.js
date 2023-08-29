@@ -4,38 +4,33 @@
 //   type: 'гласная' | 'согласная' | 'знак препинания' | 'пробел'
 // }
 
-const INPUT = "Списо^#к букв кирил(*лицы";
-
-// const generate = (string) => {};
-
-const vovels = "аеёиоуыэюя";
-const notVovels = "бвгджзйклмнпрстфхцчшщъь";
+const INPUT = 'Списо^#к букв кирил(*лицы';
 
 const fn = (symbol) => {
-  const space = symbol.match(/\s/);
-
-  if (symbol == space) return "пробел";
-  if (vovels.includes(symbol)) return "гласная";
-  if (notVovels.includes(symbol)) return "согласная";
-  return "знак препинания";
+  if (symbol.match(/\s/)) return 'пробел';
+  if (symbol.match(/[аеёиоуыэюя]/)) return 'гласная';
+  if (symbol.match(/[бвгджзйклмнпрстфхцчшщъь]/)) return 'согласная';
+  return 'знак препинания';
 };
 
-const generate = (string) => {
-  string = string.toLowerCase();
+const generate = (string) => string.split('').map((value) => ({ value, type: fn(value) }));
 
-  const arrayFromString = [];
+// const generate = (string) => {
+//   string = string.toLowerCase();
 
-  for (let index = 0; index < string.length; index++) {
-    const objectFromString = {
-      value: string.at(index),
-      type: fn(string.at(index)),
-    };
+//   const arrayFromString = [];
 
-    arrayFromString.push(objectFromString);
-  }
+//   for (let index = 0; index < string.length; index++) {
+//     const objectFromString = {
+//       value: string.at(index),
+//       type: fn(string.at(index)),
+//     };
 
-  return arrayFromString;
-};
+//     arrayFromString.push(objectFromString);
+//   }
+
+//   return arrayFromString;
+// };
 
 // Пример ответа
 // [
