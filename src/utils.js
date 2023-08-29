@@ -57,16 +57,52 @@ export const runner = () => console.log();
 
 // let target = 'Иа';
 
-
-
-
 // function findPos(str, target, pos) {
 //   pos = -1;
 //   while ((pos = str.indexOf(target, pos + 1)) !== -1) {
-   
+
 //     console.log(`found positon ${pos}`)
 //   }
 // }
 
 // findPos(str, target)
 
+// let ucFirst = (str) => {
+//   let firstChar = str.at(0).toUpperCase()
+//   let anotherChar = str.slice(1)
+//   return firstChar + anotherChar;
+// }
+
+// let str = 'вася'
+
+// console.log(ucFirst(str))
+
+// const checkSpam = (str) => {
+//   let strLowerCase = str.toLowerCase();
+//   return strLowerCase.includes("viagra") || strLowerCase.includes("xxx")
+//   // if (strLowerCase.includes("viagra") || strLowerCase.includes("xxx")) {
+//   //   return true;
+//   // } else {
+//   //   return false;
+//   // }
+// };
+
+// console.log(checkSpam('buy ViAgRA now'))
+// console.log(checkSpam('free xxxxx'))
+// console.log(checkSpam('innocent rabbit'))
+
+const truncate = (str, maxlength) => {
+  return str > maxlength
+    ? str.slice(0, maxlength - 1) + String.fromCodePoint(0x2026)
+    : str;
+  // let strLength = str.length;
+  // let strTruncate;
+  // if (strLength <= maxlength) {
+  //   return str;
+  // } else {
+  //   return (strTruncate = str.slice(0, maxlength - 1) + String.fromCodePoint(0x2026));
+  // }
+};
+
+console.log(truncate("Всем привет!", 20));
+console.log(truncate("Вот, что мне хотелось бы сказать на эту тему:", 20));
