@@ -1,60 +1,84 @@
-// 1 написать функцию, котораю по переданной строке сгенерирует массив объектов для каждой буквы типа
-// {
-//   value: string;
-//   type: 'гласная' | 'согласная' | 'знак препинания' | 'пробел'
-// }
+// любые знаки препинания нужно заигнорить
 
-const INPUT = 'Списо^#к букв кирил(*лицы';
+const INPUT = 'Простое предложение для проверки!';
 
-const fn = (symbol) => {
-  if (symbol.match(/\s/)) return 'пробел';
-  if (symbol.match(/[аеёиоуыэюя]/)) return 'гласная';
-  if (symbol.match(/[бвгджзйклмнпрстфхцчшщъь]/)) return 'согласная';
-  return 'знак препинания';
+const generate = (sentence) => {};
+
+const OUTPUT = {
+  word1: {
+    value: 'простое',
+    letters: {
+      п: 1,
+      р: 1,
+      о: 2,
+      c: 1,
+      т: 1,
+      е: 1,
+    },
+  },
+
+  word2: {
+    // ...
+  },
+
+  word3: {
+    // ...
+  },
 };
 
-const generate = (string) => string.split('').map((value) => ({ value, type: fn(value) }));
+export const runner = () => console.table(generate(INPUT));
 
-// const generate = (string) => {
-//   string = string.toLowerCase();
+// const INPUT = 'Списо^#к букв кирил(*лицы';
 
-//   const arrayFromString = [];
-
-//   for (let index = 0; index < string.length; index++) {
-//     const objectFromString = {
-//       value: string.at(index),
-//       type: fn(string.at(index)),
-//     };
-
-//     arrayFromString.push(objectFromString);
-//   }
-
-//   return arrayFromString;
+// const fn = (symbol) => {
+//   if (symbol.match(/\s/)) return 'пробел';
+//   if (symbol.match(/[аеёиоуыэюя]/)) return 'гласная';
+//   if (symbol.match(/[бвгджзйклмнпрстфхцчшщъь]/)) return 'согласная';
+//   return 'знак препинания';
 // };
 
-// Пример ответа
-// [
-//   {
-//     value: "х",
-//     type: "согласная",
-//   },
-//   {
-//     value: "у",
-//     type: "гласная",
-//   },
-//   {
-//     value: "й",
-//     type: "согласная",
-//   },
-//   {
-//     value: " ",
-//     type: "пробел",
-//   },
-//   {
-//     value: "!",
-//     type: "знак препинания",
-//   },
-// ];
+// const generate = (string) => string.split('').map((value) => ({ value, type: fn(value) }));
 
-// не трогать
-export const runner = () => console.table(generate(INPUT));
+// // const generate = (string) => {
+// //   string = string.toLowerCase();
+
+// //   const arrayFromString = [];
+
+// //   for (let index = 0; index < string.length; index++) {
+// //     const objectFromString = {
+// //       value: string.at(index),
+// //       type: fn(string.at(index)),
+// //     };
+
+// //     arrayFromString.push(objectFromString);
+// //   }
+
+// //   return arrayFromString;
+// // };
+
+// // Пример ответа
+// // [
+// //   {
+// //     value: "х",
+// //     type: "согласная",
+// //   },
+// //   {
+// //     value: "у",
+// //     type: "гласная",
+// //   },
+// //   {
+// //     value: "й",
+// //     type: "согласная",
+// //   },
+// //   {
+// //     value: " ",
+// //     type: "пробел",
+// //   },
+// //   {
+// //     value: "!",
+// //     type: "знак препинания",
+// //   },
+// // ];
+
+// // не трогать
+// export const runner = () => console.table(generate(INPUT));
