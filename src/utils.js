@@ -2,7 +2,108 @@
 
 const INPUT = 'Простое предложение для проверки!';
 
-const generate = (sentence) => {};
+//=================== #1 =====================================
+
+const deleteStrPunct = (str) => {
+  let ignore = 'ignore';
+
+  let arr = str
+    .toLowerCase()
+    .split('')
+    .map((element) => {
+      return (element =
+        element.match(/\s/) || element.match(/[аеёиоуыэюя]/) || element.match(/[бвгджзйклмнпрстфхцчшщъь]/)
+          ? element
+          : ignore);
+    });
+
+  arr.forEach((el, i, arr) => {
+    if (el === ignore) arr.splice(i, 1);
+  });
+
+  str = arr.join('');
+
+  return str;
+};
+
+const createObjProps = (str) => {
+  let arr = str.split(' ');
+
+  let obj = {};
+
+  arr.forEach((el, i) => {
+    obj['word' + (i + 1)] = {
+      value: el,
+    };
+  });
+
+  return obj;
+};
+
+const createLettersObjects = (str) => {
+  let obj = {};
+
+  let counter = 1;
+
+  for (let index = 0; index < str.length; index++) {
+    let key = str[index];
+
+    if (!(str[index] in obj)) {
+      obj[key] = 1;
+    } else {
+      obj[key] = ++counter;
+    }
+  }
+
+  return obj;
+};
+
+const generate = (sentence) => {
+  sentence = deleteStrPunct(sentence);
+
+  let obj = createObjProps(sentence);
+
+  for (const prop in obj) {
+    obj[prop].letters = createLettersObjects(obj[prop].value);
+  }
+
+  return obj;
+};
+
+//=================== #2 =====================================
+
+// const generate = (sentence) => {
+//   let words = {};
+
+//   let wordsArr = sentence.toLowerCase().split(' ');
+
+//   for (let index = 0; index < wordsArr.length; index++) {
+//     words['word' + (index + 1)] = {
+//       value: wordsArr[index],
+//     };
+//   }
+
+//   const genLetters = (str) => {
+//     let obj = {};
+
+//     let counter = 1;
+//     for (let index = 0; index < str.length; index++) {
+//       let key = str[index];
+//       if (!(str[index] in obj)) {
+//         obj[key] = 1;
+//       } else {
+//         obj[key] = ++counter;
+//       }
+//     }
+
+//     return obj;
+//   };
+
+//   for (const key in words) {
+//     words[key].letters = genLetters(words[key].value);
+//   }
+//   return words;
+// };
 
 const OUTPUT = {
   word1: {
@@ -26,7 +127,11 @@ const OUTPUT = {
   },
 };
 
-export const runner = () => console.table(generate(INPUT));
+export const runner = () => {
+  console.table(generate(INPUT));
+};
+
+//==================================================================================================
 
 // const INPUT = 'Списо^#к букв кирил(*лицы';
 
