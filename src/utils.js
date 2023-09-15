@@ -1,317 +1,202 @@
-// const obj = {
-//   name: "vasya",
-//   age: 39,
-//   siblings: [
-//     {
-//       name: "vanya",
-//       age: 109,
-//     },
-//   ],
-// };
-
-import { forwardRef } from "react";
-
-// const func = () => {
-//   return `${obj.siblings[0].name}`;
-// };
-
-const anyOtherFn = (arr) => {
-  return arr.map((el) => `this is ${el}`);
-};
-
 // dont touch
-export const runner = () => console.log();
+export const runner = () => null;
 
-//=====================================================>
+//Продвинутая работа с функциями. Объект функции, NFE
 
-// function readNumber() {
-//   let num;
-//   do {
-//     num = prompt("input number", 0);
-//   } while (!isFinite(num));
-//   if (!num) return `Number: ${null}`;
-//   return `Number: ${+num}`;
+// function sayHi() {
+//   console.log('hi');
 // }
 
-// let random = function (min, max) {
-//   let result;
-//   do {
-//     result = Math.random() * (max - min);
-//   } while (result <= min || result > max);
-//   return result;
-// };
+// const sayHi = function() {
+//   console.log('hi');
+// }
 
-// let randomInteger = function (min, max) {
-//   let result = min + Math.random() * (max - min);
-//   return result.toFixed(0);
-// };
+// function f(sayHi = function () {}) {
+//   alert(sayHi.name);
+// }
+// f();
 
-// let func = function () {
-//   let string = "hello";
-//   for (const char of string) {
-//     console.log(char);
+// console.log(sayHi.name);
+
+// function sayHi() {
+//   console.log('hi');
+//   sayHi.counter++
+// }
+
+// sayHi.counter = 0
+
+// sayHi()
+// sayHi()
+
+// console.log(`sayHi function was called ${sayHi.counter} times`);
+
+// function makeCounter() {
+//   function counter() {
+//     return counter.count++;
 //   }
+//   counter.count = 0;
+//   return counter;
+// }
+
+// let counter = makeCounter()
+
+// console.log(counter());
+// console.log(counter());
+// console.log(counter());
+
+// Установка и уменьшение значения счётчика
+// solved(0)
+
+// let counter = () => {
+//   let count = 0
+//   counter = () => count++
+//   counter.decrease = () => count--;
+//   counter.set = value => count = value;
+//   return counter();
 // };
 
-// func();
+// console.log(counter());
+// console.log(counter());
 
-//========== dataTypes.strings.theory ====================================================================
+// counter.set(10)
+// console.log(counter());
 
-// let str = 'Ослик Иа-Иа посмотрел на виадук';
+// counter.decrease()
+// console.log(counter());
 
-// let target = 'Иа';
+// Сумма с произвольным количеством скобок
 
-// function findPos(str, target, pos) {
-//   pos = -1;
-//   while ((pos = str.indexOf(target, pos + 1)) !== -1) {
+// const sum = (a) => (b) => a + b;
 
-//     console.log(`found positon ${pos}`)
+// function sum(a) {
+
+//   function sum(b) {
+//     return a + b;
+//   };
+//   return sum
+// }
+
+// console.log(sum(4)(2));
+
+// let user = {
+//   name: "John",
+//   money: 1000,
+
+//   // для хинта равного "string"
+//   toString() {
+//     return `{name: "${this.name}"}`;
+//   },
+
+//   // для хинта равного "number" или "default"
+//   valueOf() {
+//     return this.money;
+//   }
+
+// };
+
+// console.log(+user);
+
+// function sum(a) {
+//   let currentSum = a;
+
+//   function f(b) {
+//     currentSum += b;
+//     return f;
+//   }
+
+//   f.toString = function () {
+//     return currentSum;
+//   };
+
+//   return f;
+// }
+
+// console.log(+sum(1)(2));
+
+// Продвинутая работа с функциями. Планирование: setTimeout и setInterval
+
+// let timerId = setTimeout((phrase, who) => console.log(phrase + ' ' + who), 500, 'fuck you', 'dude')
+// let timerId = setInterval(() => console.log("fuck you"), 1000);
+// setTimeout(() => {
+//   clearInterval(timerId);
+// }, 10000);
+
+// let timerId = setTimeout(function sayHi() {
+//   // console.log(timerId);
+//   timerId = setTimeout(sayHi, 1000)
+//   console.log(timerId);
+// }, 1000)
+// setTimeout(() => {
+//   clearTimeout(timerId)
+// }, 11000);
+
+// let start = Date.now()
+// let times = [];
+
+// setTimeout(function run() {
+//   times.push(Date.now() - start);
+//   if (start + 100 < Date.now()) console.log(times);
+//   else setTimeout(run)
+// })
+
+// Вывод каждую секунду
+
+// function printNumbers(from, to) {
+//   let timerId = setInterval(() => {
+//     console.log(from++);
+//     if (from > to) clearInterval(timerId);
+//   }, 1000);
+// }
+
+// function printNumbers(from, to) {
+//   setTimeout(function print() {
+//     console.log(from++);
+//     if (from <= to) setTimeout(print, 500);
+//   }, 0);
+// }
+
+// printNumbers(1, 10);
+
+// Продвинутая работа с функциями. Декораторы и переадресация вызова, call/apply
+
+// Декоратор-шпион
+
+// function work(a, b) {
+//   console.log(a + b);
+// }
+
+
+// function spy(func) {
+//   let cache = []
+//   return function f () {
+//     cache.push(Array.from(arguments))
+//     func(...arguments)
+//     f.calls = cache
 //   }
 // }
 
-// findPos(str, target)
-
-//========== dataTypes.strings.problems ====================================================================
-
-// let ucFirst = (str) => {
-//   let firstChar = str.at(0).toUpperCase()
-//   let anotherChar = str.slice(1)
-//   return firstChar + anotherChar;
+// function spy(func) {
+//   function wrapper(...args) {
+//     wrapper.calls.push(args)
+//     return func.apply(this, args)
+//   }
+//   wrapper.calls = []
+//   return wrapper
 // }
 
-// let str = 'вася'
 
-// console.log(ucFirst(str))
+// work = spy(work);
 
-// const checkSpam = (str) => {
-//   let strLowerCase = str.toLowerCase();
-//   return strLowerCase.includes("viagra") || strLowerCase.includes("xxx")
-//   // if (strLowerCase.includes("viagra") || strLowerCase.includes("xxx")) {
-//   //   return true;
-//   // } else {
-//   //   return false;
-//   // }
-// };
+// work(1, 2);
+// work(4, 5);
 
-// console.log(checkSpam('buy ViAgRA now'))
-// console.log(checkSpam('free xxxxx'))
-// console.log(checkSpam('innocent rabbit'))
 
-// const truncate = (str, maxlength) => {
-//   return (str.length > maxlength)
-//     ? str.slice(0, maxlength - 1) + String.fromCodePoint(0x2026)
-//     : str;
-//   // let strLength = str.length;
-//   // let strTruncate;
-//   // if (strLength <= maxlength) {
-//   //   return str;
-//   // } else {
-//   //   return (strTruncate = str.slice(0, maxlength - 1) + String.fromCodePoint(0x2026));
-//   // }
-// };
 
-// console.log(truncate("Всем привет!", 20));
-// console.log(truncate("Вот, что мне хотелось бы сказать на эту тему:", 20));
 
-// const extractCurrencyValue = (str) => {
-//   let newStr = "";
-//   for (let index = 0; index < str.length; index++) {
-//     if (!isFinite(str.at(index))) continue;
-//     newStr += str.at(index)
-//   }
-//   return newStr;
-// };
-
-// let str = "$120";
-// console.log(extractCurrencyValue(str))
-
-//=========================================================================================================
-//========== dataTypes.arrays.theory ====================================================================
-//=========================================================================================================
-
-// let arrayFromString = [];
-// let string = 'hello'
-// for (let index = 0; index < string.length; index++) {
-//   arrayFromString.push(string.at(index))
+// for (const args of work.calls) {
+//   console.log("call:" + args.join());
 // }
 
-// console.log(arrayFromString)
 
-// for (const char of arrayFromString) {
-//   // console.log(char)
-// }
-
-//=========================================================================================================
-//========== dataTypes.arrays.problems ====================================================================
-//=========================================================================================================
-
-// let styles = ["jazz", "blues"];
-// console.log(styles);
-// styles.push("rock-n-roll");
-// console.log(styles);
-// // let arrayMiddle = Math.floor(styles.length / 2);
-// // styles[arrayMiddle] = "classic";
-// styles[Math.floor((styles.length - 1) / 2)] = "classic";
-// console.log(styles);
-// console.log(styles.shift());
-// console.log(styles);
-// styles.unshift("hip-hop", "reggey");
-// console.log(styles);
-
-//======================================
-
-// let arr = ["a", "b"];
-
-// arr.push(function() {
-//   console.log( this );
-// });
-
-// arr[2]();
-
-//======================================
-
-// function sumInput() {
-//   let array = [];
-//   let sum = 0;
-//   do {
-//     array.push(prompt("input number", 0));
-//   } while (array.at(-1) && array.at(-1) != "");
-//   for (const item of array) {
-//     if (isFinite(item)) {
-//       sum += +item;
-//     } else {
-//       continue;
-//     }
-//   }
-//   array.length = 0;
-//   return sum;
-// }
-
-// function sumInput() {
-//   let numbers = [];
-//   while (true) {
-//     let value = prompt("input number", 0);
-//     if (value === "" || value === null || !isFinite(value)) break;
-//     numbers.push(+value);
-//   }
-//   let sum = 0;
-//   for (const item of numbers) {
-//     sum += item;
-//   }
-//   return sum;
-// }
-
-// console.log(sumInput());
-
-//====================================== подмассив максимальной суммы
-
-// function getMaxSubSum(arr) {
-//   let subArr = []
-//   for (let i = 0; i < arr.length; i++) {
-//     for (let j = i + 1; j < arr.length; j++) {
-//         subArr.push(arr[i] + arr[j])
-//       }
-//   }
-
-//   return Math.max(...subArr);
-// }
-
-// function getMaxSubSum(arr) {
-//   let maxSum = 0;
-
-//   for (let i = 0; i < arr.length; i++) {
-//     let sumFixedStart = 0;
-//     for (let j = i; j < arr.length; j++) {
-//       sumFixedStart += arr[j];
-//       maxSum = Math.max(maxSum, sumFixedStart);
-//       console.log(sumFixedStart, maxSum)
-//     }
-//   }
-
-//   return maxSum;
-// }
-
-// const getMaxSubSum = (arr) => {
-//   let maxSum = 0;
-//   let partialSum = 0;
-//   for (const el of arr) {
-//     partialSum += el;
-//     maxSum = Math.max(maxSum, partialSum);
-//     if (partialSum < 0) partialSum = 0;
-//     console.log(partialSum, maxSum);
-//   }
-//   return maxSum;
-// };
-
-//CYRIL
-// const getMaxSubSum = (arr) => {
-//   if (arr.every((el) => el < 0)) return 0;
-
-//   let sum = arr.reduce((acc, el) => acc + el, 0);
-
-//   let l = 0;
-//   let r = arr.length - 1;
-
-//   while (l <= r) {
-//     const newSum = arr.slice(l, r + 1).reduce((acc, el) => acc + el, 0);
-
-//     sum = Math.max(sum, newSum);
-
-//     if (arr[l] < arr[r]) {
-//       l = l + 1;
-//     } else {
-//       r = r - 1;
-//     }
-//   }
-
-//   return sum;
-// };
-
-// let arr = [-1, 2, 3, -9]
-// console.log(getMaxSubSum(arr));
-
-//=====================================================
-//========== DATATYPES.ARRAYMETHODS.THEORY ============
-//=====================================================
-
-function arrayFromString(str) {
-  // let arr = [];
-  // let arrEl = "";
-  // for (let index = 0; index < str.length; index++) {
-  //   let startFixedPoing = 0;
-  //   if (str[index] === " ") startFixedPoing = index;
-  //   if (startFixedPoing === 0) {
-  //     arrEl = arrEl + str[index];
-  //   } else {
-  //     arr.push(arrEl);
-  //     arrEl = "";
-  //   }
-  // }
-  // return arr;
-  return str.split(' ')
-}
-
-let str =
-  "brings you the latest celebrity & royal news from the UK & around the world";
-
-  // let arr = [1,2,3];
-  
-
-// let arrayLike = {
-//   0: "что-то",
-//   1: "ещё",
-//   [Symbol.isConcatSpreadable]: true,
-//   length: 5
-// };
-
-
-// arr.sort(function (a,b) {
-  //   return a - b;
-  // })
-  let arr = [1, -2, 15, 2, 0, 8];
-  console.log(arr)
-
-// arr.forEach((el, i, arr) => {
-//   console.log(`In array ${arr} element ${el} has index ${i}`)
-// });
+// Задерживающий декоратор
 
